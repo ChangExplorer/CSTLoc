@@ -26,8 +26,9 @@ TCIA 3.02M，全系统约 9.46M。
 | `tools/tcia_v2_eval.py` | TCIA 离线评测 |
 | `smoke_test.py` | 模型前反向 + 数据集读取冒烟测试（不依赖权重） |
 
-历史实验脚本在 `code/_archive/`、`code/tools/_archive/`、`code/configs/_history/`，
-仅供追溯，不参与最终复现。`code/diag_out/`、`code/checkpoints/`、`code/logs/` 不入 Git。
+历史实验脚本与历史配置仅供追溯，不参与最终复现；发布包只保留最终闭包。
+
+`code/diag_out/`、`code/checkpoints/`、`code/logs/` 不入 Git。
 
 ## 快速检查
 
