@@ -16,15 +16,7 @@ INFMAE_CKPT="$CSTLOC_INFMAE_CKPT"
 if [ -z "$INFMAE_CKPT" ] && [ -f "$WEIGHTS/InfMAE.pth" ]; then INFMAE_CKPT="$WEIGHTS/InfMAE.pth"; fi
 if [ -n "$INFMAE_CKPT" ]; then export CSTLOC_INFMAE_CKPT="$INFMAE_CKPT"; fi
 
-# 发布包把注入式随机专家头放在 assets/ 下；train.py 用 CSTLOC_EXPERT_DIR 解析同名文件。
-EXPERT_DIR="$CSTLOC_EXPERT_DIR"
-if [ -z "$EXPERT_DIR" ]; then
-  if [ -d "$ROOT/assets/j2_expert_pretrain" ]; then EXPERT_DIR="$ROOT/assets/j2_expert_pretrain"
-  elif [ -d "$WEIGHTS/j2_expert_pretrain" ]; then EXPERT_DIR="$WEIGHTS/j2_expert_pretrain"
-  else EXPERT_DIR="$CODE/checkpoints/j2_expert_pretrain"; fi
-fi
-export CSTLOC_EXPERT_DIR="$EXPERT_DIR"
-test -f "$EXPERT_DIR/head_random.pt" || { echo "ERROR: head_random.pt not found: $EXPERT_DIR" >&2; exit 3; }
+# 注入式随机专家头由 IdentityExpert 按固定 seed 生成，无外部文件依赖。
 
 CONFIG="$CODE/configs/final/e116b_s42.yaml"
 SEED="42"

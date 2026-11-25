@@ -135,10 +135,10 @@ def main():
         assert cfg['modulator'] == 'correlation', 'CMAR 仅适配 correlation 调制器'
         print(f'CMAR 开启：mode={cmar_mode} gamma_init={cmar_gamma_init} '
               f'direction={cmar_direction}（γ 零初始化 → 训练起点 ≡ 基线，G0 审计）')
-    # 最终发布包：identity_expert 的随机头放在 weights/j2_expert_pretrain/，
-    # 由 CSTLOC_EXPERT_DIR 指向；仍保留 config 中的历史相对路径作为回退。
+    # identity_expert 为 random / linear-random 时由 IdentityExpert 按固定 seed 生成，
+    # 不依赖外部文件；其余取值仍支持 CSTLOC_EXPERT_DIR 覆盖历史相对路径。
     _exp = cfg.get('identity_expert')
-    if _exp and _exp != 'null_constant':
+    if _exp and _exp not in ('null_constant', 'random', 'linear-random'):
         _exp_dir = os.environ.get('CSTLOC_EXPERT_DIR')
         if _exp_dir:
             _cand = Path(_exp_dir) / Path(_exp).name

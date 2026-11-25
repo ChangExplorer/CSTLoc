@@ -31,7 +31,7 @@ eval_every: 5
 save_dir: ./checkpoints/e116b_s42
 ir_encoder: infmae
 dual_template: 1
-identity_expert: ./checkpoints/j2_expert_pretrain/head_random.pt
+identity_expert: random  # 由代码按固定 seed=123 生成；无需外部权重文件
 mask_null_p: 0.25
 early_stop_patience: 6
 projection_adapter: orth

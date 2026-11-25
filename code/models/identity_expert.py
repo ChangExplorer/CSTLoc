@@ -7,6 +7,8 @@
 #     （从 head_<variant>.pt 加载，cls_g 及 fc_l/bn_l/局部分类器丢弃），forward 输入 (B,2048)
 #     （dinov2 intermediate_gap 输出）→ post-BN 256-d
 # 冻结 + eval（沿用现有写法）。
+import os
+
 import torch
 import torch.nn as nn
 from pathlib import Path
@@ -19,8 +21,29 @@ DEFAULT_TAPS = [15, 23]
 class IdentityExpert(nn.Module):
     def __init__(self, ckpt_path=None, taps=DEFAULT_TAPS, emb=256):
         super().__init__()
-        ckpt_path = Path(ckpt_path) if ckpt_path else DEFAULT_CKPT
+        ckpt_path = str(ckpt_path) if ckpt_path else str(DEFAULT_CKPT)
         self.taps = taps
+        # 训练/评测时按固定种子生成随机专家头，不再随包分发 5MB 权重。
+        # 模块的构建方式与历史文件分支相同（消耗相同全局 RNG），随机头权重再用固定种子覆盖，
+        # 因此定位器后续初始化顺序与历史发布权重逐位一致。
+        if ckpt_path.lower() in ('random', 'linear-random'):
+            seed = int(os.environ.get('CSTLOC_EXPERT_SEED', '123'))
+            # 先按历史文件分支的同一方式在全局 RNG 下构建模块，消耗相同的随机数；
+            # 再在 fork 内用固定种子覆盖权重。这样后续 id_null 等初始化与历史逐位一致，
+            # 同时随机头本身与历史 head_random.pt 逐位一致。
+            self.fc_g = nn.Linear(2048, emb)
+            self.bn_g = nn.BatchNorm1d(emb)
+            with torch.random.fork_rng(devices=[]):
+                torch.manual_seed(seed)
+                ref_fc = nn.Linear(2048, emb)
+            self.fc_g.load_state_dict(ref_fc.state_dict())
+            self.bn_g.bias.requires_grad_(False)
+            self.arch = 'linear-random'
+            self.eval()
+            for p in self.parameters():
+                p.requires_grad_(False)
+            return
+        ckpt_path = Path(ckpt_path)
         state = torch.load(ckpt_path, map_location='cpu')
         arch = state.get('arch', 'spatial') if isinstance(state, dict) else 'spatial'
         self.arch = str(arch)

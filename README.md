@@ -42,11 +42,10 @@ CSTLoc/
   weights/
     e116b_s42/best_model.pth                # 固定定位器；复现发布结果必须提供
     tcia_v2_s2024/best_fullval.pt           # 只用已有权重做 L1 时放置
-  assets/j2_expert_pretrain/head_random.pt  # 注入式随机专家头，5MB（随发布包提供）
   <dataset root>/train|val|test              # 由 CSTLOC_DATA_ROOT 指定
 ```
 
-sha256 与数据规模见 `docs/权重与数据清单.md`。数据集获取：论文接收前联系
+随机专家头由 IdentityExpert 在初始化时按固定 seed=123 生成，无需外部文件；可用 CSTLOC_EXPERT_SEED 覆盖种子。sha256 与数据规模见 `docs/权重与数据清单.md`。数据集获取：论文接收前联系
 yaochang_@nudt.edu.cn；接收后补网盘链接与校验值。
 
 ## 4. 复现（定位器固定）

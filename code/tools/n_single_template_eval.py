@@ -47,8 +47,9 @@ from models.identity_expert import IdentityExpert                              #
 
 DEVICE = 'cuda'
 MIN_GAP = 30
+# 随机专家头由 IdentityExpert 按固定 seed 生成；保留 PICK 仅为兼容旧调用。
 PICK = Path(os.environ.get('CSTLOC_EXPERT_DIR', str(CODE / 'checkpoints' / 'j2_expert_pretrain')))
-RANDOM_HEAD = PICK / 'head_random.pt'
+RANDOM_HEAD = 'random'
 SYSTEMS = {
     's3': dict(ckpt='checkpoints/a2_random_expert/best_model.pth',
                cfg='configs/a2_random_expert.yaml', use_id=True, expert=str(RANDOM_HEAD)),

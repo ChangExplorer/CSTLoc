@@ -112,7 +112,7 @@ def build_locator():
     ckpt = os.environ.get('CSTLOC_LOCATOR_CKPT', str(CKPT))
     modulator = os.environ.get('CSTLOC_LOCATOR_MODULATOR', 'correlation')
     use_id = os.environ.get('CSTLOC_LOCATOR_USE_ID', '1') == '1'
-    expert = os.environ.get('CSTLOC_LOCATOR_EXPERT', str(n.RANDOM_HEAD)) if use_id else None
+    expert = os.environ.get('CSTLOC_LOCATOR_EXPERT', 'random') if use_id else None
     model = Localizer(encoder='dinov2', modulator=modulator, pretrained=True,
                       ir_encoder='infmae', use_id=use_id, identity_expert=expert,
                       mask_null_p=0.0).to(DEVICE)

@@ -31,15 +31,7 @@ while [ $# -gt 0 ]; do
 done
 test -f "$LOCATOR" || { echo "ERROR: locator checkpoint not found: $LOCATOR" >&2; exit 3; }
 test -f "$TCIA" || { echo "ERROR: TCIA checkpoint not found: $TCIA" >&2; exit 4; }
-EXPERT_DIR="$CSTLOC_EXPERT_DIR"
-if [ -z "$EXPERT_DIR" ]; then
-  if [ -d "$ROOT/assets/j2_expert_pretrain" ]; then EXPERT_DIR="$ROOT/assets/j2_expert_pretrain"
-  elif [ -d "$WEIGHTS/j2_expert_pretrain" ]; then EXPERT_DIR="$WEIGHTS/j2_expert_pretrain"
-  else EXPERT_DIR="$CODE/checkpoints/j2_expert_pretrain"; fi
-fi
-test -f "$EXPERT_DIR/head_random.pt" || { echo "ERROR: head_random.pt not found: $EXPERT_DIR" >&2; exit 5; }
-export CSTLOC_EXPERT_DIR="$EXPERT_DIR"
-export CSTLOC_LOCATOR_EXPERT="$EXPERT_DIR/head_random.pt"
+export CSTLOC_LOCATOR_EXPERT="random"
 export CSTLOC_LOCATOR_CKPT="$LOCATOR"
 export CSTLOC_LOCATOR_MODULATOR="correlation"
 export CSTLOC_LOCATOR_USE_ID="1"
