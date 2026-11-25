@@ -1,0 +1,50 @@
+# ResNet18 + Correlation（本次主角：空间实例匹配）
+encoder: dinov2
+modulator: correlation
+pretrained: true
+# ResNet18 预训练权重：null=用 timm 自动下载/本地缓存；
+# 如需指定路径，填绝对路径即可（如 /path/to/resnet18.pth）
+pretrained_path: null
+
+# 数据
+data_root: /home/user/Code/Datasets/CSTLoc-UAV_v2
+train_split: train         # 全量数据：训练用官方 train 划分
+eval_split: val
+instances: null
+img_size: [384, 640]       # H, W，保长宽比 letterbox
+patch_size: 224
+sigma_factor: 0.3
+n_templates: 1             # 训练模板数
+eval_n_templates: 1        # 评测模板数（扫 N 时改此项）
+min_gap_frames: 30         # Δt≥1s
+
+# 训练
+epochs: 100
+batch_size: 12
+num_workers: 2
+lr: 0.00005
+alpha: 2.0
+pos_weight: 10.0
+suppress_weight: 5.0
+seed: 42
+eval_every: 5
+save_dir: ./checkpoints/e19c_abl_g
+ir_encoder: infmae
+dual_template: 1
+identity_expert: ./checkpoints/j2_expert_pretrain/head_random.pt
+mask_null_p: 0.25
+early_stop_patience: 6
+projection_adapter: orth
+corr_ce_weight: 0.1
+corr_distill_weight: 0.05
+collapse_gate: true
+collapse_gate_baseline: 0.284
+# 2026-10-23 lead 裁决（任务书 §8.3 修正块，commit 6b48f05）：门禁阈值 0.234 只作监控，不作停机条件；
+# M1 判据在训练结束时按全轨迹判读（早停点最近 2 eval 均 >0 且无 >=5 连负）。e19c 首跑被缺省 True 在 ep10 截断，依裁决改为 false。
+collapse_gate_early_stop: false
+
+# 任务书 2.5：e19c = e19_b 配方 + CMAR 门控注意力读出（γ 零初始化）。
+# 与 e19_b 的全部差异（含本注释块）：① cmar:true ② save_dir ③ deterministic:true（硬约束，G0b 审计前提）。
+deterministic: true
+cmar: true
+cmar_direction: token

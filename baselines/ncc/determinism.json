@@ -1,0 +1,9 @@
+{
+ "gate": "同配置双跑冒烟逐位一致（任务书 2.3 §0.5）",
+ "config": "split=test, smoke=200 trials, scales=0.75/1.0/1.5, nms_dist=32, topk=32, workers=4, chunk=8",
+ "run_a": {"results_sha256": "59fee6abeca99425e2d43200a13e8cdb69fa2cd5c6d4b0b5cd9e8862b0f9f87a", "peaks_sha256": "24033926993e0c2148c309f5d8c74120eba9e93a4035acd5ef23b3ee2aa4096b"},
+ "run_b": {"results_sha256": "59fee6abeca99425e2d43200a13e8cdb69fa2cd5c6d4b0b5cd9e8862b0f9f87a", "peaks_sha256": "24033926993e0c2148c309f5d8c74120eba9e93a4035acd5ef23b3ee2aa4096b"},
+ "bitwise_identical": true,
+ "note": "两次运行期间主批量作业(12 worker)在跑，CPU 竞争条件不同仍逐位一致 → 与调度无关",
+ "smoke_dirs": ["baselines/ncc/smoke_a", "baselines/ncc/smoke_b"]
+}

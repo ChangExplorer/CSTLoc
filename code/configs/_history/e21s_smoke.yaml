@@ -1,0 +1,36 @@
+encoder: dinov2
+modulator: correlation
+pretrained: true
+pretrained_path: null
+data_root: /home/user/Code/Datasets/CSTLoc-UAV_v2
+train_split: train
+eval_split: train
+instances:
+- car_133
+img_size:
+- 384
+- 640
+patch_size: 224
+sigma_factor: 0.3
+n_templates: 1
+eval_n_templates: 1
+min_gap_frames: 30
+epochs: 200
+batch_size: 12
+num_workers: 2
+lr: 5.0e-05
+alpha: 2.0
+pos_weight: 10.0
+suppress_weight: 5.0
+seed: 42
+eval_every: 5
+save_dir: ./checkpoints/e21s_smoke
+ir_encoder: infmae
+dual_template: 1
+identity_expert: ./checkpoints/j2_expert_pretrain/head_random.pt
+mask_null_p: 0.25
+early_stop_patience: 6
+corr_ce_weight: 0.1
+corr_distill_weight: 0
+corr_bypass: true
+deterministic: true

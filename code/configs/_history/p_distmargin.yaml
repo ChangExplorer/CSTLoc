@@ -1,0 +1,35 @@
+# 实验 P-a：目标-干扰物 margin 项（分支 A）——a2_random_expert.yaml 逐字段复制 + 唯一改动
+# 改动（任务书 QP §P4 写死）：distractor_margin: 1；save_dir: ./checkpoints/p_distmargin
+# 其余逐字段不动（含 identity_expert=head_random、mask_null_p=0.25、suppress_weight=5.0）
+encoder: dinov2
+modulator: correlation
+pretrained: true
+pretrained_path: null
+
+data_root: /home/user/Code/Datasets/CSTLoc-UAV_v2
+train_split: train
+eval_split: val
+instances: null
+img_size: [384, 640]
+patch_size: 224
+sigma_factor: 0.3
+n_templates: 1
+eval_n_templates: 1
+min_gap_frames: 30
+
+epochs: 100
+batch_size: 12
+num_workers: 4
+lr: 0.00005
+alpha: 2.0
+pos_weight: 10.0
+suppress_weight: 5.0
+seed: 42
+eval_every: 5
+save_dir: ./checkpoints/p_distmargin
+ir_encoder: infmae
+dual_template: 1
+identity_expert: ./checkpoints/j2_expert_pretrain/head_random.pt
+mask_null_p: 0.25
+early_stop_patience: 6
+distractor_margin: 1

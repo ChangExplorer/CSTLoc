@@ -1,0 +1,33 @@
+# ResNet18 + Correlation（本次主角：空间实例匹配）
+encoder: dinov2
+modulator: correlation
+pretrained: true
+# ResNet18 预训练权重：null=用 timm 自动下载/本地缓存；
+# 如需指定路径，填绝对路径即可（如 /path/to/resnet18.pth）
+pretrained_path: null
+
+# 数据
+data_root: /home/user/Code/Datasets/CSTLoc-UAV_v2
+train_split: train         # 全量数据：训练用官方 train 划分
+eval_split: val
+instances: null
+img_size: [384, 640]       # H, W，保长宽比 letterbox
+patch_size: 224
+sigma_factor: 0.3
+n_templates: 1             # 训练模板数
+eval_n_templates: 1        # 评测模板数（扫 N 时改此项）
+min_gap_frames: 30         # Δt≥1s
+
+# 训练
+epochs: 100
+batch_size: 12
+num_workers: 4
+lr: 0.00005
+alpha: 2.0
+pos_weight: 10.0
+suppress_weight: 5.0
+seed: 123
+eval_every: 5
+save_dir: ./checkpoints/v2_s1_s123
+ir_encoder: infmae
+dual_template: 1

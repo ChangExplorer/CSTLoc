@@ -1,0 +1,63 @@
+{
+ "n_trials": 307527,
+ "overall": {
+  "pair_macro": 0.2251,
+  "trial_micro": 0.2817
+ },
+ "easy": 0.3366,
+ "hard": 0.1926,
+ "seen": 0.2277,
+ "unseen": 0.1772,
+ "pck_min": 0.1844,
+ "auc_max": 0.236,
+ "per_class": {
+  "animal": {
+   "pair_macro": 0.0583,
+   "n": 5665,
+   "unseen": true
+  },
+  "bus": {
+   "pair_macro": 0.043,
+   "n": 7440,
+   "unseen": false
+  },
+  "car": {
+   "pair_macro": 0.3509,
+   "n": 109965,
+   "unseen": false
+  },
+  "elebike": {
+   "pair_macro": 0.0323,
+   "n": 930,
+   "unseen": false
+  },
+  "pedestrian": {
+   "pair_macro": 0.1734,
+   "n": 172217,
+   "unseen": false
+  },
+  "tricycle": {
+   "pair_macro": 0.1429,
+   "n": 10020,
+   "unseen": false
+  },
+  "truck": {
+   "pair_macro": 0.3953,
+   "n": 1290,
+   "unseen": true
+  }
+ },
+ "instance_rank1_hard_provisional": 0.5208,
+ "failure_taxonomy_provisional": {
+  "miss": 0.7354,
+  "instance_confusion": 0.1755,
+  "other_confusion": 0.0891
+ },
+ "time_norm_thirds": {
+  "short": 0.23,
+  "mid": 0.2163,
+  "long": 0.2188
+ },
+ "results_file": "baselines/owv_detector/results.jsonl",
+ "split": "test"
+}

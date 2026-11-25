@@ -1,0 +1,17 @@
+{
+ "gate": "同配置双跑冒烟逐位一致（任务书 2.3 §0.5）",
+ "config": "dinov2_retrieval, smoke=每实例前 2 帧（24 实例 × 2 = 48 帧 / 3,332 trials）, layer=23, pool=257-token, grid=26x45, nms 32px",
+ "run_a": {
+  "results_sha256": "bc528b563aa54b7879f87bf0f597bbe5d2156ffe0fde3981ba580167c4bf9360",
+  "peaks_sha256": "293cdbfa507a5a79e54133ebb4c764f6511e7bc71344cb6a6926000252033104"
+ },
+ "run_b": {
+  "results_sha256": "bc528b563aa54b7879f87bf0f597bbe5d2156ffe0fde3981ba580167c4bf9360",
+  "peaks_sha256": "293cdbfa507a5a79e54133ebb4c764f6511e7bc71344cb6a6926000252033104"
+ },
+ "bitwise_identical": true,
+ "smoke_dirs": [
+  "baselines/dinov2_retrieval/smoke_a",
+  "baselines/dinov2_retrieval/smoke_b"
+ ]
+}

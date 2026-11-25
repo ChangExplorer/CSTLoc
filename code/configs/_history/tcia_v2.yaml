@@ -1,0 +1,22 @@
+seed: 42  # 默认；TCIA_SEED 或 --seed 仅改变初始化与采样顺序
+model: tcia_v2_peakcrop_rank4_attn256
+max_epochs: 15
+early_stop_patience_evals: 3
+val_every_epochs: 2
+trials: 20000
+candidates_per_trial: 20
+episodic:
+  instances_per_batch: 2
+  trials_per_instance: 2
+optimizer:
+  head_lr: 0.001
+  lora_lr: 0.0001
+  weight_decay: 0.0
+  fused: true
+loss:
+  tau: 0.07
+  wrong_margin: 0.2
+  wrong_weight: 0.5
+  wrong_target_index: 0
+checkpoint: val_selected_best
+pipeline: tcia-v2-peakcrop-v1

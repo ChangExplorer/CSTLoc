@@ -1,0 +1,16 @@
+# CSTLoc 训练/评测依赖 —— 与本机 conda viir 环境实测版本一致（2026-09-01 核对）
+# Python 3.10.20（conda env: viir，解释器 /home/user/anaconda3/envs/viir/bin/python）
+#
+# torch/torchvision 为 CUDA 12.1 构建（pip 包名带 +cu121 后缀），安装须用官方索引：
+#   pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu121
+# 其余包直接 pip install -r requirements.txt 即可。
+
+torch==2.5.1
+torchvision==0.20.1
+timm==1.0.26
+ultralytics==8.4.96
+numpy==2.2.6
+opencv-python==5.0.0.93
+pillow==12.1.1
+PyYAML==6.0.3
+matplotlib==3.10.8

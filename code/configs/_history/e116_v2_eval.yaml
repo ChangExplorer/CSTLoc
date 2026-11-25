@@ -1,0 +1,37 @@
+# 任务书 1.17 T1：1.16 评测协议母本（v2）配置（只评测，不训练）。
+# = 评测母版 a2_random_expert.yaml 逐字段复制 + data_root 指向 v3。
+# 消费方：tools/e117_v3_eval.py（读 data_root；train_split/save_dir 等训练字段不使用，
+# 保留仅为「逐字段复制」口径——评测管线不读它们）。
+encoder: dinov2
+modulator: correlation
+pretrained: true
+pretrained_path: null
+
+# 数据（唯一改动字段：data_root → v3）
+data_root: /home/user/Code/Datasets/CSTLoc-UAV_v2
+train_split: train
+eval_split: val
+instances: null
+img_size: [384, 640]
+patch_size: 224
+sigma_factor: 0.3
+n_templates: 1
+eval_n_templates: 1
+min_gap_frames: 30
+
+# 训练（本任务不使用，随母版逐字段保留；本配置不构建任何 DataLoader，num_workers 不生效）
+epochs: 100
+batch_size: 12
+num_workers: 4
+lr: 0.00005
+alpha: 2.0
+pos_weight: 10.0
+suppress_weight: 5.0
+seed: 42
+eval_every: 5
+save_dir: ./checkpoints/a2_random_expert
+ir_encoder: infmae
+dual_template: 1
+identity_expert: ./checkpoints/j2_expert_pretrain/head_random.pt
+mask_null_p: 0.25
+early_stop_patience: 6
