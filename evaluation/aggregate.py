@@ -167,7 +167,7 @@ def main():
     ap.add_argument('--results', required=True)
     ap.add_argument('--peaks', default=None)
     ap.add_argument('--split', required=True, choices=['val', 'test'])
-    ap.add_argument('--data-root', default=os.environ.get('CSTLOC_DATA_ROOT', str(EVAL_DIR.parents[1] / 'Datasets' / 'CSTLoc-UAV_v3')))
+    ap.add_argument('--data-root', default=os.environ.get('CSTLOC_DATA_ROOT', '/home/user/Code/Datasets/CSTLoc'))
     ap.add_argument('--out', default=None)
     args = ap.parse_args()
     if args.split != 'test':

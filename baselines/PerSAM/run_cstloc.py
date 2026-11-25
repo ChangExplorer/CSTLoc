@@ -4,14 +4,15 @@ from pathlib import Path
 import numpy as np, cv2, torch
 from torch.nn import functional as F
 
-REPO = "/home/user/Code/CSTLoc/references/repos/Personalize-SAM"
+ROOT = Path(__file__).resolve().parents[2]
+REPO = os.environ.get("CSTLOC_PERSAM_REPO", str(ROOT / "references" / "repos" / "Personalize-SAM"))
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 sys.path.insert(0, REPO); os.chdir(REPO)
 from per_segment_anything import sam_model_registry, SamPredictor  # noqa
 
-DATA = os.environ.get("CSTLOC_DATA_ROOT", "/home/user/Code/Datasets/CSTLoc-UAV_v3")
-SAM_CKPT = "/home/user/Code/CSTLoc/references/weights/sam_vit_h_4b8939.pth"
+DATA = os.environ.get("CSTLOC_DATA_ROOT", "/home/user/Code/Datasets/CSTLoc")
+SAM_CKPT = os.environ.get("CSTLOC_SAM_CKPT", str(ROOT / "references" / "weights" / "sam_vit_h_4b8939.pth"))
 CLS = {"pedestrian":"pedestrian","car":"car","tricycle":"tricycle","elebike":"electric bike",
        "bus":"bus","bike":"bike","animal":"animal","truck":"truck"}
 DEV = "cuda"

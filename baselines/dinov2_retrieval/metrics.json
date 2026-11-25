@@ -1,19 +1,19 @@
 {
- "n_trials": 307527,
+ "n_trials": 327772,
  "overall": {
-  "pair_macro": 0.2032,
-  "trial_micro": 0.2265
+  "pair_macro": 0.2071,
+  "trial_micro": 0.2302
  },
- "easy": 0.3206,
- "hard": 0.168,
+ "easy": 0.319,
+ "hard": 0.1783,
  "seen": 0.2015,
- "unseen": 0.2345,
- "pck_min": 0.1083,
- "auc_max": 0.1937,
+ "unseen": 0.2504,
+ "pck_min": 0.1053,
+ "auc_max": 0.197,
  "per_class": {
   "animal": {
-   "pair_macro": 0.0072,
-   "n": 5665,
+   "pair_macro": 0.0296,
+   "n": 14850,
    "unseen": true
   },
   "bus": {
@@ -42,24 +42,10 @@
    "unseen": false
   },
   "truck": {
-   "pair_macro": 0.6512,
-   "n": 1290,
+   "pair_macro": 0.5062,
+   "n": 12350,
    "unseen": true
   }
  },
- "instance_rank1_hard_provisional": 0.447,
- "failure_taxonomy_provisional": {
-  "miss": 0.7336,
-  "instance_confusion": 0.1543,
-  "other_confusion": 0.1121
- },
- "time_norm_thirds": {
-  "short": 0.2035,
-  "mid": 0.2041,
-  "long": 0.1933
- },
- "oracle@5": 0.3816,
- "oracle@20": 0.5187,
- "results_file": "baselines/dinov2_retrieval/b23_dinov2_test_results.jsonl",
  "split": "test"
 }

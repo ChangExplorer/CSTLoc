@@ -1,4 +1,6 @@
 # 任务书 3.4（CMI 探针）阶段 1：trial 采样 + e116b_s42 top-20 候选 + 特征缓存 + 标签落盘
+# 说明：这是历史 CMI 探针的完整入口；发布包中的 03_build_candidates.sh 只复用本文件的
+#       build_locator / label_peaks，不需要运行本文件的 main()。
 #
 # 口径（2026-10-27 预登记，PROGRESS 阶段 64）：
 #   采样：np.random.RandomState(42) 全局单流，按 (split: train→val, inst 升序, t 升序)，
@@ -51,7 +53,7 @@ SEED = 42
 BATCH_T = 12            # 与 n 模块一致
 MIN_GAP = 30
 DEVICE = 'cuda'
-ROOT = Path('/home/user/Code/Datasets/CSTLoc-UAV_v2')
+ROOT = Path(os.environ.get('CSTLOC_DATA_ROOT', '/home/user/Code/Datasets/CSTLoc'))
 EXT = Path('/home/user/Code/cmi_probe_cache')   # 仓库外特征缓存（大 .pt 不入库）
 OUT_DIR = CODE / 'diag_out'
 CKPT = CODE / 'checkpoints' / 'e116b_s42' / 'best_model.pth'

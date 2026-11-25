@@ -63,7 +63,7 @@ bash scripts/05_eval_test.sh              # v3 test 全量
 bash scripts/06_reproduce_tables.sh
 ```
 
-发布系统的定位器固定为 e116b_s42（随外部权重提供）；从零复现训练的是 TCIA，其输入候选已随包提供。由于 GPU 训练本身的非确定性，从零训练的 checkpoint 不承诺与发布权重逐位一致；主表由 weights/ 中的最终权重评测复现，指标逐位一致。
+发布系统的定位器固定为 e116b_s42（随外部权重提供）；从零复现训练的是 TCIA，其输入候选已随包提供。由于 GPU 训练本身的非确定性，从零训练的 checkpoint 不承诺与发布权重逐位一致；主表由 weights/ 中的最终权重评测复现。
 
 ### 4.1 全链从零训练（v3，定位器 seed42 + TCIA seed2024）
 
@@ -113,4 +113,4 @@ test 只用于最终报告。
 
 ## 7. 引用
 
-见 `CITATION.cff`。
+引用随附论文；正式发表后在此补充 BibTeX。

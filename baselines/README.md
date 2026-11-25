@@ -10,7 +10,7 @@
 | `dinov2_retrieval/` | 冻结 DINOv2 特征检索 + 滑窗 | 0.2071 | 0.1783 |
 | `owv_detector/` | 开放词汇检测（Grounding DINO） | 0.2116 | 0.1902 |
 
-数字为 v3 test 327,772 配对上的 pair-macro PCK@0.5·max。
+数字为 v3 test 327,772 配对上的 pair-macro PCK@0.5·max。每个子目录随包附带 metrics.json（同一 v3 口径）；results.jsonl / peaks.jsonl 体积大，不随包，按各子目录命令可重建。
 
 ## 共同契约
 

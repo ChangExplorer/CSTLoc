@@ -24,7 +24,7 @@ from groundingdino.util.slconfig import SLConfig  # noqa: E402
 from groundingdino.util.utils import clean_state_dict  # noqa: E402
 
 GD = ROOT / 'references' / 'repos' / 'GroundingDINO'
-DATA = Path(os.environ.get('CSTLOC_DATA_ROOT', '/home/user/Code/Datasets/CSTLoc-UAV_v2'))
+DATA = Path(os.environ.get('CSTLOC_DATA_ROOT', '/home/user/Code/Datasets/CSTLoc'))
 MIN_GAP = 30
 
 

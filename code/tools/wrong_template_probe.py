@@ -1,4 +1,6 @@
-# 错模板探针：实例判别 vs 类别显著性诊断（任务 2 / 阶段 3 任务 4 回归）
+# 错模板探针（历史诊断脚本，非最终主链）：实例判别 vs 类别显著性诊断（任务 2 / 阶段 3 任务 4 回归）
+# 用途：固定定位器，对 hard 帧分别输入正确模板 / 同类错模板 / 噪声模板，比较 PCK，
+#       用于回答“定位器是否真的用了模板身份”。最终主表与 05_eval_test.sh 不依赖本脚本。
 #
 # 加载指定 encoder 的两个 checkpoint（corr / film best_model.pth），
 # 对 test 实例 car_008 / car_010 / car_015 各取按帧号升序前 10 帧
@@ -31,7 +33,7 @@ import numpy as np
 import torch
 
 CODE = Path(__file__).resolve().parents[1]          # code/
-ROOT = CODE.parent / 'dataset' / 'CSTLoc-UAV'       # dataset/CSTLoc-UAV
+ROOT = Path(os.environ.get('CSTLOC_DATA_ROOT', str(CODE.parent / 'dataset' / 'CSTLoc')))
 sys.path.insert(0, str(CODE))
 
 from data.cstloc_dataset import _letterbox, _to_tensor  # noqa: E402
@@ -118,7 +120,7 @@ def main():
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
     ap = argparse.ArgumentParser()
-    ap.add_argument('--data-root', default=str(CODE.parent / 'dataset' / 'CSTLoc-UAV'),
+    ap.add_argument('--data-root', default=str(ROOT),
                     help='数据集根目录（默认 v1 路径）')
     ap.add_argument('--frames-json', default=None,
                     help='val 口径帧号 JSON（probe_val_frames.json）；传入时按 val_hard 节运行（实例在 val split）')

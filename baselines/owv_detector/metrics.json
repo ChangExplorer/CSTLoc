@@ -1,19 +1,19 @@
 {
- "n_trials": 307527,
+ "n_trials": 327772,
  "overall": {
-  "pair_macro": 0.2251,
-  "trial_micro": 0.2817
+  "pair_macro": 0.2116,
+  "trial_micro": 0.269
  },
- "easy": 0.3366,
- "hard": 0.1926,
+ "easy": 0.3053,
+ "hard": 0.1902,
  "seen": 0.2277,
- "unseen": 0.1772,
- "pck_min": 0.1844,
- "auc_max": 0.236,
+ "unseen": 0.0876,
+ "pck_min": 0.174,
+ "auc_max": 0.2225,
  "per_class": {
   "animal": {
-   "pair_macro": 0.0583,
-   "n": 5665,
+   "pair_macro": 0.037,
+   "n": 14850,
    "unseen": true
   },
   "bus": {
@@ -42,22 +42,10 @@
    "unseen": false
   },
   "truck": {
-   "pair_macro": 0.3953,
-   "n": 1290,
+   "pair_macro": 0.1462,
+   "n": 12350,
    "unseen": true
   }
  },
- "instance_rank1_hard_provisional": 0.5208,
- "failure_taxonomy_provisional": {
-  "miss": 0.7354,
-  "instance_confusion": 0.1755,
-  "other_confusion": 0.0891
- },
- "time_norm_thirds": {
-  "short": 0.23,
-  "mid": 0.2163,
-  "long": 0.2188
- },
- "results_file": "baselines/owv_detector/results.jsonl",
  "split": "test"
 }

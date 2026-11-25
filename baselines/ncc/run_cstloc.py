@@ -46,7 +46,7 @@ cv2.setNumThreads(1)
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
-ROOT_DEFAULT = os.environ.get('CSTLOC_DATA_ROOT', str(REPO.parent / 'Datasets' / 'CSTLoc-UAV_v3'))
+ROOT_DEFAULT = os.environ.get('CSTLOC_DATA_ROOT', '/home/user/Code/Datasets/CSTLoc')
 MIN_GAP = 30
 SCALES = (0.75, 1.0, 1.5)
 NMS_DIST = 32

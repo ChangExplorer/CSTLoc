@@ -16,7 +16,7 @@ import numpy as np  # noqa: E402
 import torch  # noqa: E402
 from romatch import roma_outdoor  # noqa: E402
 
-DATA = Path(os.environ.get('CSTLOC_DATA_ROOT', '/home/user/Code/Datasets/CSTLoc-UAV_v2'))
+DATA = Path(os.environ.get('CSTLOC_DATA_ROOT', '/home/user/Code/Datasets/CSTLoc'))
 MIN_GAP = 30
 DEVICE = torch.device('cuda')
 
