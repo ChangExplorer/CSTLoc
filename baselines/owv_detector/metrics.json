@@ -1,0 +1,51 @@
+{
+ "n_trials": 327772,
+ "overall": {
+  "pair_macro": 0.2116,
+  "trial_micro": 0.269
+ },
+ "easy": 0.3053,
+ "hard": 0.1902,
+ "seen": 0.2277,
+ "unseen": 0.0876,
+ "pck_min": 0.174,
+ "auc_max": 0.2225,
+ "per_class": {
+  "animal": {
+   "pair_macro": 0.037,
+   "n": 14850,
+   "unseen": true
+  },
+  "bus": {
+   "pair_macro": 0.043,
+   "n": 7440,
+   "unseen": false
+  },
+  "car": {
+   "pair_macro": 0.3509,
+   "n": 109965,
+   "unseen": false
+  },
+  "elebike": {
+   "pair_macro": 0.0323,
+   "n": 930,
+   "unseen": false
+  },
+  "pedestrian": {
+   "pair_macro": 0.1734,
+   "n": 172217,
+   "unseen": false
+  },
+  "tricycle": {
+   "pair_macro": 0.1429,
+   "n": 10020,
+   "unseen": false
+  },
+  "truck": {
+   "pair_macro": 0.1462,
+   "n": 12350,
+   "unseen": true
+  }
+ },
+ "split": "test"
+}

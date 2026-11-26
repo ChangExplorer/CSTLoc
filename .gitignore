@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+code/diag_out/
+code/logs/
+code/checkpoints/
+evaluation/cache/
+evaluation/results/
+weights/
+infmae/
+*.jsonl
+
+references/
