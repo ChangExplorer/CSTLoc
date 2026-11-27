@@ -16,16 +16,11 @@ export PYTHONPATH="$CODE"
 export CSTLOC_DATA_ROOT="$DATA_ROOT"
 export CSTLOC_WEIGHTS="$WEIGHTS"
 
-SKIP_TRAIN="$SKIP_TRAIN"
-if [ -z "$SKIP_TRAIN" ]; then SKIP_TRAIN="0"; fi
 bash "$ROOT/scripts/00_env_check.sh"
 bash "$ROOT/scripts/01_prepare_dataset.sh"
 "$PY" "$ROOT/scripts/01b_build_test_cache.py"
-if [ "$SKIP_TRAIN" != "1" ]; then
-  # 全链：自训定位器 → 重建候选 → 训练 TCIA；SKIP_TRAIN=1 时只评测已有权重
-  bash "$ROOT/scripts/02_train_locator.sh"
-  bash "$ROOT/scripts/03_build_candidates.sh"
-  bash "$ROOT/scripts/04_train_tcia.sh"
-fi
+bash "$ROOT/scripts/02_train_locator.sh"
+bash "$ROOT/scripts/03_build_candidates.sh"
+bash "$ROOT/scripts/04_train_tcia.sh"
 bash "$ROOT/scripts/05_eval_test.sh"
 echo "[all] done"
