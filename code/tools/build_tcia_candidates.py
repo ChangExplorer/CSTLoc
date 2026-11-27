@@ -120,9 +120,9 @@ def main():
                 continue
             pos = labels.index(2)
             if pos != 0:
-                order = [pos] + [i for i in range(len(labels)) if i != pos]
-                peaks = [peaks[i] for i in order]
-                labels = [labels[i] for i in order]
+                peak_order = [pos] + [i for i in range(len(labels)) if i != pos]
+                peaks = [peaks[i] for i in peak_order]
+                labels = [labels[i] for i in peak_order]
             rows.append({
                 'schema': 'tcia.peakcache.v1', 'split': 'train',
                 'inst': inst, 't': int(t), 'f': int(f),
@@ -139,7 +139,7 @@ def main():
         scanned += 1
         if scanned % 100 == 0 or len(rows) >= args.n_trials:
             dt = time.time() - t0
-            print(f'[cand] frames={scanned}/{len(order)} rows={len(rows)} '
+            print(f'[cand] frames={scanned}/{len(frame_ids("train"))} rows={len(rows)} '
                   f'rate={len(rows)/max(dt,1e-9):.2f}/s elapsed={dt:.0f}s', flush=True)
         if len(rows) >= last_flush + 1000:
             write_jsonl(tmp, rows)

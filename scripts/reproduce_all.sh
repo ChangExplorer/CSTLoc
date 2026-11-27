@@ -28,5 +28,4 @@ if [ "$SKIP_TRAIN" != "1" ]; then
   bash "$ROOT/scripts/04_train_tcia.sh"
 fi
 bash "$ROOT/scripts/05_eval_test.sh"
-bash "$ROOT/scripts/06_reproduce_tables.sh"
 echo "[all] done"

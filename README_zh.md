@@ -88,7 +88,6 @@ bash scripts/02_train_locator.sh          # 训练定位器    → weights/locat
 bash scripts/03_build_candidates.sh       # 用你的定位器构建 2 万条 TCIA 训练候选
 bash scripts/04_train_tcia.sh             # 训练 TCIA    → weights/tcia/best_fullval.pt
 bash scripts/05_eval_test.sh              # v3 test 全量评测
-bash scripts/06_reproduce_tables.sh       # 与论文报告值对比
 ```
 
 也可以一次性跑完：`bash scripts/reproduce_all.sh`。模型选择只用 val；test 只用于

@@ -97,7 +97,6 @@ bash scripts/02_train_locator.sh          # train the locator      → weights/l
 bash scripts/03_build_candidates.sh       # build 20k TCIA training candidates with your locator
 bash scripts/04_train_tcia.sh             # train the TCIA adapter → weights/tcia/best_fullval.pt
 bash scripts/05_eval_test.sh              # evaluate on the full v3 test split
-bash scripts/06_reproduce_tables.sh       # compare your summary with the reported numbers
 ```
 
 Or everything at once: `bash scripts/reproduce_all.sh`. Model selection uses the val

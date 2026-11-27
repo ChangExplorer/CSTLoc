@@ -157,7 +157,7 @@ def run_split(model, split, instances=None, write_scores=True):
     for k in ('hit_tcia', 'hit_locator'):
         for m in ('overall', 'easy', 'hard', 'seen', 'unseen'):
             flat[f'{k}_{m}'] = metrics[k][m]['pair_macro']
-    summary = {'type': f'{split}_tcia_only', 'seed': SEED, 'n_trials': total_done,
+    summary = {'type': f'{split}_tcia_only', 'eval_seed': SEED, 'n_trials': total_done,
                'elapsed_s': time.time() - t0, **flat, 'detail': metrics}
     return summary, rows
 
